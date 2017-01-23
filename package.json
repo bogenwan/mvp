@@ -1,0 +1,31 @@
+{
+  "name": "hrsf52-mvp",
+  "version": "1.0.0",
+  "description": "What's for Dinner?",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bogenwan/hrsf52-mvp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bogenwan/hrsf52-mvp/issues"
+  },
+  "scripts": {
+    "dev": "webpack -d --watch",
+    "build" : "webpack -p"
+  },
+  "homepage": "https://github.com/bogenwan/hrsf52-mvp#readme",
+  "dependencies": {
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "webpack": "^1.14.0"
+  }
+}
