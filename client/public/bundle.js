@@ -42,9 +42,9 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!******************************!*\
-  !*** ./client/app/index.jsx ***!
-  \******************************/
+/*!****************************!*\
+  !*** ./client/app/App.jsx ***!
+  \****************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57,6 +57,12 @@
 	
 	var _reactDom = __webpack_require__(/*! react-dom */ 32);
 	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _nav = __webpack_require__(/*! ./nav.jsx */ 178);
+	
+	var _resturantList = __webpack_require__(/*! ./resturantList.jsx */ 180);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -68,19 +74,32 @@
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
 	
-	  function App() {
+	  function App(props) {
 	    _classCallCheck(this, App);
 	
-	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+	
+	    _this.state = {
+	      resturantList: []
+	    };
+	    return _this;
 	  }
 	
 	  _createClass(App, [{
 	    key: 'render',
 	    value: function render() {
+	
 	      return _react2.default.createElement(
-	        'p',
+	        'div',
 	        null,
-	        ' Hello React!'
+	        _react2.default.createElement(_nav.Nav, null),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          ' in App ',
+	          this.state.resturantList
+	        ),
+	        _react2.default.createElement(_resturantList.ResturantList, null)
 	      );
 	    }
 	  }]);
@@ -88,7 +107,7 @@
 	  return App;
 	}(_react2.default.Component);
 	
-	(0, _reactDom.render)(_react2.default.createElement(App, null), document.getElementById('app'));
+	_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('app'));
 
 /***/ },
 /* 1 */
@@ -22054,6 +22073,143 @@
 	
 	module.exports = ReactDOMInvalidARIAHook;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../process/browser.js */ 3)))
+
+/***/ },
+/* 178 */
+/*!****************************!*\
+  !*** ./client/app/nav.jsx ***!
+  \****************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.Nav = undefined;
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _search = __webpack_require__(/*! ./search.jsx */ 179);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Nav = function Nav(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(_search.Search, null)
+	  );
+	};
+	
+	exports.Nav = Nav;
+
+/***/ },
+/* 179 */
+/*!*******************************!*\
+  !*** ./client/app/search.jsx ***!
+  \*******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.Search = undefined;
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Search = function Search(props) {
+	  return _react2.default.createElement(
+	    "div",
+	    null,
+	    "in Search",
+	    _react2.default.createElement("br", null),
+	    _react2.default.createElement("input", { id: "location", className: "input-box", type: "text", placeholder: "your location" }),
+	    _react2.default.createElement("br", null),
+	    _react2.default.createElement("input", { id: "rating", className: "input-box", type: "text", placeholder: "rating" }),
+	    _react2.default.createElement("br", null),
+	    _react2.default.createElement("input", { id: "price", className: "input-box", type: "text", placeholder: "price range" }),
+	    _react2.default.createElement("br", null),
+	    _react2.default.createElement(
+	      "button",
+	      { id: "search", type: "submit" },
+	      "Find Resturant!"
+	    )
+	  );
+	};
+	
+	exports.Search = Search;
+
+/***/ },
+/* 180 */
+/*!**************************************!*\
+  !*** ./client/app/resturantList.jsx ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.ResturantList = undefined;
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _resturantEntry = __webpack_require__(/*! ./resturantEntry.jsx */ 181);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var ResturantList = function ResturantList(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    'in ResturantList',
+	    _react2.default.createElement(_resturantEntry.ResturantEntry, null)
+	  );
+	};
+	
+	exports.ResturantList = ResturantList;
+
+/***/ },
+/* 181 */
+/*!***************************************!*\
+  !*** ./client/app/resturantEntry.jsx ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.ResturantEntry = undefined;
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var ResturantEntry = function ResturantEntry(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    'in ResturantEntry'
+	  );
+	};
+	
+	exports.ResturantEntry = ResturantEntry;
 
 /***/ }
 /******/ ]);
