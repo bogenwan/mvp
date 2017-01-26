@@ -63,6 +63,8 @@
 	
 	var _resturantList = __webpack_require__(/*! ./resturantList.jsx */ 180);
 	
+	var _search = __webpack_require__(/*! ./search.js */ 181);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -80,26 +82,103 @@
 	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 	
 	    _this.state = {
-	      resturantList: []
+	      resturantList: [],
+	      location: '',
+	      rating: '',
+	      price: ''
 	    };
+	    _this.handleChangeLocation = _this.handleChangeLocation.bind(_this);
+	
+	    _this.handleChangeRating = _this.handleChangeRating.bind(_this);
+	
+	    _this.handleChangePrice = _this.handleChangePrice.bind(_this);
+	
+	    _this.searchClicked = _this.searchClicked.bind(_this);
+	
 	    return _this;
 	  }
 	
 	  _createClass(App, [{
+	    key: 'handleChangeLocation',
+	    value: function handleChangeLocation(e) {
+	      this.setState({
+	        location: e.target.value
+	      });
+	      console.log('handleChangeLocation', this.state.location);
+	    }
+	  }, {
+	    key: 'handleChangeRating',
+	    value: function handleChangeRating(e) {
+	      this.setState({
+	        rating: e.target.value
+	      });
+	      console.log('handleChangeRating', this.state.rating);
+	    }
+	  }, {
+	    key: 'handleChangePrice',
+	    value: function handleChangePrice(e) {
+	      this.setState({
+	        price: e.target.value
+	      });
+	      console.log('handleChangeRating', this.state.price);
+	    }
+	
+	    // renderList () {
+	    // //   this.setState({
+	    // //   resturantList: window.data,
+	    // // })
+	    // }
+	
+	
+	  }, {
+	    key: 'searchClicked',
+	    value: function searchClicked(e) {
+	      //var context = this;
+	      e.preventDefault();
+	      this.setState({
+	        resturantList: window.data.businesses
+	      });
+	      //console.log(this.state.resturantList)
+	    }
+	  }, {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.setState({
+	        resturantList: [window.data.businesses[0], window.data.businesses[1]]
+	      });
+	    }
+	    //**************************need work*******
+	    // var context = this;
+	
+	    // var queryObj = {
+	    //   location: this.state.location,
+	    //   rating: this.state.rating,
+	    //   //price: this.state.price.toString(),
+	    //   limit: 5,
+	    //   access_token: window.api.apiToken
+	    // };
+	
+	    // console.log(queryObj);
+	
+	
+	    // window.searchYelp(queryObj, function(data) {
+	    //   console.log(data)
+	    //   context.setState({
+	    //     resturantList: data
+	    //   });
+	    // })
+	    //***************************need work *******
+	
+	
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	
+	      //console.log(this.state.resturantList)
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_nav.Nav, null),
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          ' in App ',
-	          this.state.resturantList
-	        ),
-	        _react2.default.createElement(_resturantList.ResturantList, null)
+	        _react2.default.createElement(_nav.Nav, { search: this.searchClicked, changeLocation: this.handleChangeLocation, changeRating: this.handleChangeRating, changePrice: this.handleChangePrice }),
+	        _react2.default.createElement(_resturantList.ResturantList, { list: this.state.resturantList })
 	      );
 	    }
 	  }]);
@@ -22100,7 +22179,7 @@
 	  return _react2.default.createElement(
 	    'div',
 	    null,
-	    _react2.default.createElement(_search.Search, null)
+	    _react2.default.createElement(_search.Search, { search: props.search, changeLocation: props.changeLocation, changeRating: props.changeRating, changePrice: props.changePrice })
 	  );
 	};
 	
@@ -22120,33 +22199,77 @@
 	});
 	exports.Search = undefined;
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _react = __webpack_require__(/*! react */ 1);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Search = function Search(props) {
-	  return _react2.default.createElement(
-	    "div",
-	    null,
-	    "in Search",
-	    _react2.default.createElement("br", null),
-	    _react2.default.createElement("input", { id: "location", className: "input-box", type: "text", placeholder: "your location" }),
-	    _react2.default.createElement("br", null),
-	    _react2.default.createElement("input", { id: "rating", className: "input-box", type: "text", placeholder: "rating" }),
-	    _react2.default.createElement("br", null),
-	    _react2.default.createElement("input", { id: "price", className: "input-box", type: "text", placeholder: "price range" }),
-	    _react2.default.createElement("br", null),
-	    _react2.default.createElement(
-	      "button",
-	      { id: "search", type: "submit" },
-	      "Find Resturant!"
-	    )
-	  );
-	};
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Search = function (_React$Component) {
+	  _inherits(Search, _React$Component);
+	
+	  function Search(props) {
+	    _classCallCheck(this, Search);
+	
+	    return _possibleConstructorReturn(this, (Search.__proto__ || Object.getPrototypeOf(Search)).call(this, props));
+	  }
+	
+	  _createClass(Search, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "form",
+	          { onSubmit: this.props.search },
+	          _react2.default.createElement(
+	            "label",
+	            null,
+	            "Location:",
+	            _react2.default.createElement("input", { id: "location", className: "form-control input-box", type: "text", placeholder: "zip code", ref: "zip", onChange: this.props.changeLocation })
+	          ),
+	          _react2.default.createElement("br", null),
+	          _react2.default.createElement(
+	            "label",
+	            null,
+	            "Rating:",
+	            _react2.default.createElement("input", { id: "rating", className: "form-control input-box", type: "text", placeholder: "rating ex. 5", ref: "rating", onChange: this.props.changeRating })
+	          ),
+	          _react2.default.createElement("br", null),
+	          _react2.default.createElement(
+	            "label",
+	            null,
+	            "Price:",
+	            _react2.default.createElement("input", { id: "price", className: "form-control input-box", type: "text", placeholder: "price ex. $$$$", ref: "price", onChange: this.props.changePrice })
+	          ),
+	          _react2.default.createElement("br", null),
+	          _react2.default.createElement(
+	            "button",
+	            { className: "btn btn-success", id: "search", type: "submit" },
+	            "Find Resturant!"
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Search;
+	}(_react2.default.Component);
 	
 	exports.Search = Search;
+	
+	//ref={(input) => { this.textInput = input; }}
+	//ref={(input)=> this.todo = input}
 
 /***/ },
 /* 180 */
@@ -22166,16 +22289,18 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _resturantEntry = __webpack_require__(/*! ./resturantEntry.jsx */ 181);
+	var _resturantEntry = __webpack_require__(/*! ./resturantEntry.jsx */ 182);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var ResturantList = function ResturantList(props) {
+	  //console.log(props.list[0])
 	  return _react2.default.createElement(
 	    'div',
 	    null,
-	    'in ResturantList',
-	    _react2.default.createElement(_resturantEntry.ResturantEntry, null)
+	    props.list.map(function (resturant, index) {
+	      return _react2.default.createElement(_resturantEntry.ResturantEntry, { eachResturant: resturant, key: index });
+	    })
 	  );
 	};
 	
@@ -22183,12 +22308,55 @@
 
 /***/ },
 /* 181 */
+/*!******************************!*\
+  !*** ./client/app/search.js ***!
+  \******************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	$(document).ready(function () {
+	
+	  var searchYelp = function searchYelp(searchOption, callback) {
+	    var url = 'http://127.0.0.1:3000/search';
+	    //var url = 'https://api.yelp.com/v3/businesses/search'
+	    console.log(searchOption);
+	    // var queryObj = {
+	    //   location: 'location' +'',
+	    //   rating: 'rating',
+	    //   price: 'string',
+	    //   limit: 5,
+	    //   access_token: this.api.apiToken
+	    // };
+	
+	    $.get(url, searchOption, function (data) {
+	      callback(data);
+	      console.log(data);
+	    });
+	    //   $.ajax({
+	    //   type: "GET",
+	    //   beforeSend: function(request) {
+	    //     request.setRequestHeader("Authorization", window.api.apiToken);
+	    //   },
+	    //   url: "url",
+	    //   data: searchOption,
+	    //   success: function(data) {
+	    //     console.log(data);
+	    //   }
+	    // });
+	  };
+	
+	  window.searchYelp = searchYelp;
+	});
+
+/***/ },
+/* 182 */
 /*!***************************************!*\
   !*** ./client/app/resturantEntry.jsx ***!
   \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -22202,10 +22370,42 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var ResturantEntry = function ResturantEntry(props) {
+	  console.log(props.eachResturant);
 	  return _react2.default.createElement(
-	    'div',
+	    "div",
 	    null,
-	    'in ResturantEntry'
+	    _react2.default.createElement(
+	      "div",
+	      { className: "resturant-list-entry-title" },
+	      props.eachResturant.name
+	    ),
+	    "Rating:",
+	    _react2.default.createElement(
+	      "div",
+	      null,
+	      props.eachResturant.rating
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      null,
+	      props.eachResturant.location.address1
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      null,
+	      props.eachResturant.location.city
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      null,
+	      props.eachResturant.location.zip_code
+	    ),
+	    _react2.default.createElement(
+	      "a",
+	      { href: props.eachResturant.url },
+	      "Visit our yelp site and see our feedbacks!"
+	    ),
+	    _react2.default.createElement("img", { className: "media-object", src: props.eachResturant.image_url, resturantid: props.key, alt: "" })
 	  );
 	};
 	

@@ -1,6 +1,8 @@
 body {
   background-image: url("./finedine.jpg");
   font-family: Lobster;
+  color: red;
+  font-size: 30px;
 }
 
 .input-box {

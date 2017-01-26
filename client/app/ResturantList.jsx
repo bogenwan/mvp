@@ -2,12 +2,17 @@ import React from 'react';
 import {ResturantEntry} from './resturantEntry.jsx'
 
 var ResturantList = (props) => {
-  return (
+  //console.log(props.list[0])
+  return(
     <div>
-    in ResturantList
-    <ResturantEntry />
+    {props.list.map((resturant, index) => {
+      return (
+        <ResturantEntry eachResturant={resturant} key={index}/>)
+    })
+    }
     </div>
-  )
+    )
 }
 
 export {ResturantList};
+
